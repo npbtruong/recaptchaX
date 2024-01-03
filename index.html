@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recaptcha v3 Test</title>
+    <!-- Add Recaptcha script -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdBFEQpAAAAADU6zTGCZ3pb4nBf3WH3_fZ_P1BH"></script>
+</head>
+<body>
+
+    <h1>Recaptcha v3 Test</h1>
+
+    <!-- Add your form or any other content here -->
+    <form id="myForm">
+        <!-- Your form fields go here -->
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <!-- Add a hidden field to store the Recaptcha response -->
+        <input type="hidden" name="recaptchaResponse" id="recaptchaResponse">
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        // Function to execute Recaptcha and submit the form
+        function submitForm() {
+            grecaptcha.ready(function() {
+                // Execute Recaptcha with the specified action
+                grecaptcha.execute('6LdBFEQpAAAAADU6zTGCZ3pb4nBf3WH3_fZ_P1BH', { action: 'submit' }).then(function(token) {
+                    // Set the Recaptcha response in the hidden field
+                    document.getElementById('recaptchaResponse').value = token;
+
+                    // Submit the form (you can customize this part based on your needs)
+                    document.getElementById('myForm').submit();
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>
